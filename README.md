@@ -34,7 +34,7 @@ Due to an issue with Puphpet provisioning, some python packages will fail to ins
 > should be in the log above. Please read the output to determine what
 > went wrong.
 
-The recommended work around is to re-run vagrant provision immediately.
+To ensure the packages are installed, re-run vagrant provision immediately.
 
 ```sh
 $ vagrant provision
