@@ -1,5 +1,8 @@
 # README
 
+### Please Note
+Only OSX is currently supported as per workshop requirements.
+
 ### Pre-Requisites
 Please ensure the following versions of applications are installed on your machine prior to going any further.
 - git
@@ -75,10 +78,6 @@ Don't forget to stop the machine when you are finished:
 ```sh
 $ vagrant halt
 ```
-
-
-
-
 
 ---
 ### Problems? 
