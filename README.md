@@ -2,6 +2,7 @@
 
 ## Pre-Requisites
 Please ensure the following versions of applications are installed on your machine prior to going any further.
+- git
 - Virtualbox v5.016 or above (https://www.virtualbox.org/)
 - Vagrant v1.8.1 (https://www.vagrantup.com/)
 
