@@ -11,3 +11,31 @@ $ vagrant plugin install vagrant-bindfs
 ```
 
 ## Instructions
+Follow these steps to run the vagrant machine.
+
+Clone the repository to your home directory 
+
+```sh
+$ cd ~
+$ git clone https://github.com/nathanwebsterdotme/su-trainingvm.git
+```
+
+Bring the Vagrant box up:
+
+```sh
+$ cd su-trainingvm
+$ vagrant up
+```
+
+Due to an issue with Puphpet provisioning, some python packages will fail to install when the first 'vagrant up' is run.  You will likely see an error message similar to the following: 
+
+> The SSH command responded with a non-zero exit status. Vagrant
+> assumes that this means the command failed. The output for this command
+> should be in the log above. Please read the output to determine what
+> went wrong.
+
+The recommended work around is to re-run vagrant provision immediately.
+
+```sh
+$ vagrant provision
+```
