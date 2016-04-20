@@ -27,14 +27,34 @@ $ cd su-trainingvm
 $ vagrant up
 ```
 
-Due to an issue with Puphpet provisioning, some python packages will fail to install when the first 'vagrant up' is run.  You will likely see an error message similar to the following: 
+&nbsp;
+&nbsp;
+
+This vagrant machine uses an NFS folder to allow us to edit code in our local environment.  You will see the following message asking for admin permissions to configure this on first run.  Please enter your local user admin password when prompted.
+
+> ==> systemsup: Exporting NFS shared folders...
+> ==> systemsup: Preparing to edit /etc/exports. Administrator privileges will be required...
+
+> WARNING: Improper use of the sudo command could lead to data loss
+> or the deletion of important system files. Please double-check your
+> typing when using sudo. Type "man sudo" for more information.
+
+> To proceed, enter your password, or type Ctrl-C to abort.
+
+> Password:
+
+&nbsp;
+&nbsp;
+&nbsp;
+
+Due to an issue with Puppet provisioning on the first run, some python packages will fail to install and the following error message will be displayed after the first 'vagrant up' is run:
 
 > The SSH command responded with a non-zero exit status. Vagrant
 > assumes that this means the command failed. The output for this command
 > should be in the log above. Please read the output to determine what
 > went wrong.
 
-To ensure the packages are installed, re-run vagrant provision immediately.
+To ensure the packages are installed correctly, re-run 'vagrant provision' immediately.
 
 ```sh
 $ vagrant provision
