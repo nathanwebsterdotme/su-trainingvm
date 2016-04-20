@@ -1,6 +1,6 @@
 # README
 
-## Pre-Requisites
+### Pre-Requisites
 Please ensure the following versions of applications are installed on your machine prior to going any further.
 - git
 - Virtualbox v5.016 or above (https://www.virtualbox.org/)
@@ -11,7 +11,7 @@ After Vagrant is installed, run the following command to install a required vagr
 $ vagrant plugin install vagrant-bindfs
 ```
 
-## Instructions
+### Instructions
 Follow these steps to run the vagrant machine.
 
 Clone the repository to your home directory 
@@ -31,7 +31,7 @@ $ vagrant up
 &nbsp;
 &nbsp;
 
-This vagrant machine uses an NFS folder to allow us to edit code in our local environment.  You will see the following message asking for admin permissions to configure this on first run.  Please enter your local user admin password when prompted.
+This vagrant machine uses an NFS folder to allow us to edit code in our local environment.  You will see the following message asking for admin permissions to configure this on first run. 
 
 > ==> systemsup: Exporting NFS shared folders...
 > ==> systemsup: Preparing to edit /etc/exports. Administrator privileges will be required...
@@ -43,6 +43,8 @@ This vagrant machine uses an NFS folder to allow us to edit code in our local en
 > To proceed, enter your password, or type Ctrl-C to abort.
 
 > Password:
+
+ Please enter your local user admin password when prompted to continue the process. 
 
 &nbsp;
 &nbsp;
@@ -60,3 +62,24 @@ To ensure the packages are installed correctly, re-run 'vagrant provision' immed
 ```sh
 $ vagrant provision
 ```
+
+This will re-run puppet on the machine which will install the missing packages. 
+You can now SSH on to the Vagrant box if required:
+
+```sh
+$ vagrant ssh
+```
+
+Don't forget to stop the machine when you are finished:
+
+```sh
+$ vagrant halt
+```
+
+
+
+
+
+---
+### Problems? 
+Contact nwebster@systemsup.co.uk
