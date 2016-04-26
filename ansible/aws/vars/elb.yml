@@ -1,5 +1,5 @@
 ---
-load_balancer_name: "{{ vpc_name }}-web-elb"
+load_balancer_name: "{{ vpc_name }}-lb"
 elb_purge_subnets: yes
 elb_cross_az_load_balancing: yes
 elb_ping_protocol: tcp

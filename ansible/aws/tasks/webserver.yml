@@ -41,12 +41,9 @@
     user_data: |
               #!/bin/sh
     instance_tags:
-      Name: "{{ vpc_name }}_web"
-      Environment: "{{ ENV }}"
-      Role: "{{ server_role }}"
-      Application: "{{ application }}"
+      Name: "{{ vpc_name }}-web"
   with_items:
-    - "{{ private_subnet_1 }}"
+    - "{{ public_subnet_1 }}"
   register: web
 
 
@@ -54,15 +51,3 @@
   set_fact:
     instance_private_ip_1: "{{ web.results[0].instances[0].private_ip }}"
     instance_id_1: "{{ web.results[0].instances[0].id }}"
-
-
-# - name: WebServer | Add the newly created EC2 instance(s) to the local host group (located inside the directory)
-#   local_action: 
-#     module: lineinfile 
-#     dest: "./hosts" 
-#     regexp: "{{ item }}" 
-#     insertafter: "[webserver]" 
-#     line: "{{ item }}"
-#   with_items:
-#     - "{{ instance_private_ip_1 }}"
-

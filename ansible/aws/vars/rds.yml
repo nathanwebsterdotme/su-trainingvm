@@ -1,8 +1,8 @@
 ---
 # RDS Security Group(s) variables
 rds_security_groups:
-  - sg_name: "{{ vpc_name }}-rds-sg"
-    sg_description: "{{ vpc_name }}-rds-sg"
+  - sg_name: "{{ vpc_name }}-db-sg"
+    sg_description: "{{ vpc_name }}-db-sg"
     sg_rules:
       - proto: tcp
         from_port: 3306
@@ -24,4 +24,4 @@ rds_db_name: "{{ user_initials }}ansible"
 rds_instance_type: db.t2.micro
 rds_db_username: admin
 rds_db_password: password
-backup_retention_period: 0
+backup_retention_period: 7
