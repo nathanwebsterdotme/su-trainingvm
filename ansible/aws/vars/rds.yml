@@ -1,0 +1,27 @@
+---
+# RDS Security Group(s) variables
+rds_security_groups:
+  - sg_name: "{{ vpc_name }}-rds-sg"
+    sg_description: "{{ vpc_name }}-rds-sg"
+    sg_rules:
+      - proto: tcp
+        from_port: 3306
+        to_port: 3306
+        cidr_ip: 0.0.0.0/0
+
+
+# RDS Subnet Group variables
+rds_subnet_group: "{{ vpc_name }}"
+rds_subnet_group_description: "{{ user_initials }}-rds-subnet-group"
+
+
+# RDS Instance variables
+multi_zone_option: no
+rds_instance_name: mydb
+rds_db_engine: MySQL
+rds_db_size: 5
+rds_db_name: "{{ user_initials }}ansible"
+rds_instance_type: db.t2.micro
+rds_db_username: admin
+rds_db_password: password
+backup_retention_period: 0

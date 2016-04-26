@@ -1,0 +1,46 @@
+---
+user_initials: nath
+
+
+# Variables for VPC
+vpc_name: "{{ user_initials }}-ansible"
+vpc_region: eu-west-1 # Ireland
+vpc_cidr_block: 10.0.0.0/16
+
+public_cidr_1: 10.0.1.0/24
+public_az_1: "{{ vpc_region }}a"
+public_cidr_2: 10.0.2.0/24
+public_az_2: "{{ vpc_region }}b"
+
+private_cidr_1: 10.0.10.0/24
+private_az_1: "{{ vpc_region }}a"
+private_cidr_2: 10.0.20.0/24
+private_az_2: "{{ vpc_region }}b"
+
+# Please don't change the variables below, until you know what you are doing
+#
+# Subnets Defination for VPC
+vpc_subnets:
+  - cidr: "{{ public_cidr_1 }}" # Public Subnet-1
+    az: "{{ public_az_1 }}"
+    resource_tags: { "Name":"{{ vpc_name }}-publicA" }
+  - cidr: "{{ public_cidr_2 }}" # Public Subnet-2
+    az: "{{ public_az_2 }}"
+    resource_tags: { "Name":"{{ vpc_name }}-publicB" }
+  - cidr: "{{ private_cidr_1 }}" # Private Subnet-1
+    az: "{{ private_az_1 }}"
+    resource_tags: { "Name":"{{ vpc_name }}-privateA" }
+  - cidr: "{{ private_cidr_2 }}" # Private Subnet-2
+    az: "{{ private_az_2 }}"
+    resource_tags: { "Name":"{{ vpc_name }}-privateB" }
+
+# Route table(s) for Subnets inside the VPC
+#
+# Routing Table for Public Subnet
+route_tables:
+  - subnets:
+      - "{{ public_cidr_1 }}"
+      - "{{ public_cidr_2 }}"
+    routes:
+      - dest: 0.0.0.0/0
+        gw: igw

@@ -1,0 +1,68 @@
+---
+
+- name: WebServer | Create WEB Security Group
+  local_action:
+    module: ec2_group
+    name: "{{ item.sg_name }}"
+    description: "{{ item.sg_description }}"
+    region: "{{ vpc_region }}" # Change the AWS region here
+    vpc_id: "{{ vpc.vpc_id }}" # vpc is the resgister name, you can also set it manually
+    state: present
+    rules: "{{ item.sg_rules }}"
+  with_items: web_security_groups
+  register: web_sg
+
+
+
+- name: WebServer | Tag the WEB Security Group with a name
+  local_action:
+    module: ec2_tag
+    resource: "{{ item.group_id}}"
+    region: "{{ vpc_region }}"
+    state: present
+    tags:
+      Name: "{{ item.item.sg_name }}"
+  with_items: web_sg.results
+
+
+ 
+- name: WebServer | Create the WebServer Instance(s)
+  local_action:
+    module: ec2
+    region: "{{ vpc_region }}"
+    group: "{{ web_security_groups[0].sg_name }}"
+    keypair: "{{ key_name }}"
+    instance_type: "{{ web_instance_type }}"
+    image: "{{ web_ami_id }}"
+    vpc_subnet_id: "{{ item }}"
+    assign_public_ip: True
+    wait: True
+    wait_timeout: 600
+    user_data: |
+              #!/bin/sh
+    instance_tags:
+      Name: "{{ vpc_name }}_web"
+      Environment: "{{ ENV }}"
+      Role: "{{ server_role }}"
+      Application: "{{ application }}"
+  with_items:
+    - "{{ private_subnet_1 }}"
+  register: web
+
+
+- name: WebServer | Set the Instances facts
+  set_fact:
+    instance_private_ip_1: "{{ web.results[0].instances[0].private_ip }}"
+    instance_id_1: "{{ web.results[0].instances[0].id }}"
+
+
+# - name: WebServer | Add the newly created EC2 instance(s) to the local host group (located inside the directory)
+#   local_action: 
+#     module: lineinfile 
+#     dest: "./hosts" 
+#     regexp: "{{ item }}" 
+#     insertafter: "[webserver]" 
+#     line: "{{ item }}"
+#   with_items:
+#     - "{{ instance_private_ip_1 }}"
+
