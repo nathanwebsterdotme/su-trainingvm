@@ -1,5 +1,5 @@
 ---
-user_initials: nath
+user_initials: 
 
 
 # Variables for VPC
@@ -17,8 +17,7 @@ private_az_1: "{{ vpc_region }}a"
 private_cidr_2: 10.0.20.0/24
 private_az_2: "{{ vpc_region }}b"
 
-# Please don't change the variables below, until you know what you are doing
-#
+
 # Subnets Defination for VPC
 vpc_subnets:
   - cidr: "{{ public_cidr_1 }}" # Public Subnet-1
