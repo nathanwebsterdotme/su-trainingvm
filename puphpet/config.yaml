@@ -22,7 +22,7 @@ vagrantfile:
                     vflm_xnihdkc26o4s:
                         id: systemsup
                         network:
-                            private_network: 192.168.56.101
+                            private_network: 192.168.56.221
                             forwarded_port:
                                 vflmnfp_g4noqespds5p:
                                     host: '7285'
